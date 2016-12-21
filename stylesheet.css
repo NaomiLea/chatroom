@@ -1,0 +1,28 @@
+#online {
+  background-color: rgb(206, 208, 212);
+  height:100vh;
+}
+
+form {
+  margin-top: -50px;
+  background-color: rgb(54, 114, 152);
+  height: 50px;
+}
+
+#type {
+  height: 40px;
+  width: 75vw;
+  margin-left: -15px;
+  margin-top: 5px;
+  font-size: 130%;
+
+}
+
+#submit {
+  background-color: rgb(187, 192, 203);
+  border: none;
+  height: 37px;
+  width: 5vw;
+  font-family: "Mirza";
+  font-size: 130%;
+}
