@@ -14,9 +14,12 @@
 
 <body>
     <div id="chatlog" class="col-sm-9">
+
         <ul id="messages"></ul>
     </div>
-    <div id="online" class="col-sm-3"></div>
+    <div id="online" class="col-sm-3">
+        <div id="username"></div>
+    </div>
     <form class="col-sm-12" action="">
         <input id="type" type="text" />
         <input type="submit" id="submit" />
@@ -24,6 +27,10 @@
 
     <script>
         var socket = io();
+        var user = prompt("What's your name?");
+
+
+
         $('form').submit(function() {
             socket.emit('chat message', $('#type').val());
             $('#type').val('');
@@ -32,6 +39,12 @@
         socket.on('chat message', function(msg) {
             $('#messages').append($('<li>').text(msg));
         });
+        socket.emit("join", user);
+        socket.on("join", function(user) {
+
+            // $("#username").append($("<p>").text(user));
+
+        })
     </script>
 
 
