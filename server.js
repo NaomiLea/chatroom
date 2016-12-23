@@ -7,6 +7,7 @@ var onlineUsers = [];
 console.log(onlineUsers);
 app.use(express.static(__dirname + '/'));
 
+
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
@@ -17,7 +18,9 @@ io.on('connection', function(socket) {
     socket.on("join", function(user) {
 
         onlineUsers.push(user);
-        socket.emit("join", onlineUsers);
+        io.emit("user list", onlineUsers);
+        var name = onlineUsers.indexOf(user);
+        console.log(name);
 
     });
     socket.on('chat message', function(msg) {
@@ -26,6 +29,7 @@ io.on('connection', function(socket) {
     });
     socket.on('disconnect', function() {
         console.log('user disconnected');
+
     });
 
 });
