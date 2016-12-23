@@ -13,9 +13,11 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
     console.log('a user connected');
+
     socket.on("join", function(user) {
-        socket.emit("join", user);
+
         onlineUsers.push(user);
+        socket.emit("join", onlineUsers);
 
     });
     socket.on('chat message', function(msg) {

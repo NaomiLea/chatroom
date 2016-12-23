@@ -37,12 +37,15 @@
             return false;
         });
         socket.on('chat message', function(msg) {
-            $('#messages').append($('<li>').text(msg));
+            $('#messages').append($('<li>').text(user + ": " + msg));
         });
         socket.emit("join", user);
-        socket.on("join", function(user) {
+        socket.on("join", function(onlineUsers) {
 
-            // $("#username").append($("<p>").text(user));
+            $("#username").empty();
+            for (var i = 0; i < onlineUsers.length; i++) {
+                $("#username").append($("<p>").text(onlineUsers[i]));
+            }
 
         })
     </script>
