@@ -1,39 +1,49 @@
 #messages {
-  color: var(--base)
+    color: var(--base)
 }
+
 #online {
-  background-color: rgb(206, 208, 212);
-  height:100vh;
+    background-color: rgb(206, 208, 212);
+    height: 100vh;
 }
 
 form {
-  margin-top: -50px;
-  background-color: rgb(49, 95, 156);
-  height: 50px;
+    margin-top: -50px;
+    background-color: rgb(49, 95, 156);
+    height: 50px;
 }
 
 #type {
-  height: 40px;
-  width: 75vw;
-  margin-left: -15px;
-  margin-top: 5px;
-  font-size: 130%;
-
+    height: 40px;
+    width: 75vw;
+    margin-left: -15px;
+    margin-top: 5px;
+    font-size: 130%;
 }
 
 #submit {
-  background-color: rgb(187, 192, 203);
-  border: none;
-  height: 37px;
-  width: 5vw;
-  font-family: "Mirza";
-  font-size: 130%;
+    background-color: rgb(187, 192, 203);
+    border: none;
+    height: 37px;
+    width: 5vw;
+    font-family: "Mirza";
+    font-size: 130%;
 }
 
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
-:root{
-  --base: rgb(0, 0, 0);
+#emojis {
+    display: none;
+    position: absolute;
+    top: 85%;
+    border-radius: 3px;
+    border-color: rgb(0, 0, 0);
+    border: solid;
+    background-color: #ffffff;
+}
+
+:root {
+    --base: rgb(0, 0, 0);
 }

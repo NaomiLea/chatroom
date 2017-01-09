@@ -9,6 +9,7 @@
     <!-- <script src="index.js"></script> -->
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
 
 </head>
@@ -20,12 +21,29 @@
     </div>
     <div id="online" class="col-sm-3">
         <div id="username"></div>
+        <div id="emojis">
+
+            <i class="em em---1" onClick="emoji()"></i>
+
+            <i class="em em--1"></i>
+            <i class="em em-smile"></i>
+            <i class="em em-worried"></i>
+            <i class="em em-punch"></i>
+            <i class="em em-unamused"></i>
+            <i class="em em-yum"></i>
+
+        </div>
     </div>
+
+
     <form class="col-sm-12" action="">
         <div class="controls">
             <input id="type" type="text" />
             <input type="submit" id="submit" />
+            <label for="base">Change text color</label>
             <input id="base" type="color" name="base" value="#ffc600">
+            <i class="em em-smiley" onClick="emojiBox()"></i>
+
         </div>
 
     </form>
@@ -50,7 +68,7 @@
             }
         });
 
-//Changing of color
+        //Changing of color
         const inputs = document.querySelectorAll(".controls input");
 
         function handleUpdate() {
@@ -61,6 +79,20 @@
         inputs.forEach(input => input.addEventListener("change", handleUpdate));
         inputs.forEach(input => input.addEventListener("mousemove", handleUpdate));
 
+        function emojiBox() {
+            var div = document.getElementById('emojis');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        };
+
+        function emoji() {
+            document.getElementById("messages").createElement = '<i class="em em---1"></i>';
+
+        };
     </script>
 
 
