@@ -10,6 +10,7 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
+
 </head>
 
 <body>
@@ -21,8 +22,12 @@
         <div id="username"></div>
     </div>
     <form class="col-sm-12" action="">
-        <input id="type" type="text" />
-        <input type="submit" id="submit" />
+        <div class="controls">
+            <input id="type" type="text" />
+            <input type="submit" id="submit" />
+            <input id="base" type="color" name="base" value="#ffc600">
+        </div>
+
     </form>
 
     <script>
@@ -44,8 +49,19 @@
                 $("#username").append($("<p>").text(onlineUsers[i]));
             }
         });
-    </script>
 
+//Changing of color
+        const inputs = document.querySelectorAll(".controls input");
+
+        function handleUpdate() {
+            const suffix = this.dataset.sizing || "";
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
+        }
+        inputs.forEach(input => input.addEventListener("change", handleUpdate));
+        inputs.forEach(input => input.addEventListener("mousemove", handleUpdate));
+
+    </script>
 
 
 </body>

@@ -1,3 +1,6 @@
+#messages {
+  color: var(--base)
+}
 #online {
   background-color: rgb(206, 208, 212);
   height:100vh;
@@ -5,7 +8,7 @@
 
 form {
   margin-top: -50px;
-  background-color: rgb(54, 114, 152);
+  background-color: rgb(49, 95, 156);
   height: 50px;
 }
 
@@ -29,4 +32,8 @@ form {
 
 ul {
   list-style-type: none;
+}
+
+:root{
+  --base: rgb(0, 0, 0);
 }
