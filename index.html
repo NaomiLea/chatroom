@@ -2,15 +2,20 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">
     <!-- <script src="index.js"></script> -->
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <link href="lib/css/nanoscroller.css" rel="stylesheet">
-    <link href="lib/css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.css">
+    <script type="text/javascript" src="js/jquery.emojipicker.js"></script>
+
+    <!-- Emoji Data -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.a.css">
+    <script type="text/javascript" src="js/jquery.emojis.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 </head>
 
@@ -27,18 +32,36 @@
     <form class="col-sm-12" action="">
         <div class="controls">
 
-            <input id="type" type="text" data-emojiable="true" />
+            <div class="field" id="typing">
+                <input type="text" id="input-default" class="emojiable-option" placeholder="Default">
+            </div>
 
-            <input type="submit" id="submit" />
-            <label for="base">Change text color</label>
-            <input id="base" type="color" name="base" value="#ffc600">
-            
+            <div id="typing">
+                <input type="submit" id="submit" />
+                <label for="base">Change text color</label>
+                <input id="base" type="color" name="base" value="#ffc600">
+            </div>
 
         </div>
 
     </form>
 
     <script>
+        $(document).ready(function(e) {
+
+            $('#input-default').emojiPicker();
+
+            // keyup event is fired
+            $(".emojiable-option").on("keyup", function() {
+                //console.log("emoji added, input val() is: " + $(this).val());
+            });
+
+        });
+
+
+
+
+
         var socket = io();
         var user = prompt("What's your name?");
 
@@ -58,6 +81,7 @@
                 $("#username").append($("<p>").text(onlineUsers[i]));
             }
         });
+
 
 
         //Changing of color
@@ -82,13 +106,6 @@
         };
     </script>
 
-    <!-- ** Don't forget to Add jQuery here ** -->
-    <script src="lib/js/nanoscroller.min.js"></script>
-    <script src="lib/js/tether.min.js"></script>
-    <script src="lib/js/config.js"></script>
-    <script src="lib/js/util.js"></script>
-    <script src="lib/js/jquery.emojiarea.js"></script>
-    <script src="lib/js/emoji-picker.js"></script>
 </body>
 
 

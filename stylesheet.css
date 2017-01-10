@@ -13,14 +13,6 @@ form {
     height: 50px;
 }
 
-#type {
-    height: 40px;
-    width: 75vw;
-    margin-left: -15px;
-    margin-top: 5px;
-    font-size: 130%;
-}
-
 #submit {
     background-color: rgb(187, 192, 203);
     border: none;
@@ -28,20 +20,36 @@ form {
     width: 5vw;
     font-family: "Mirza";
     font-size: 130%;
+
 }
 
 ul {
     list-style-type: none;
 }
 
-#emojis {
-    display: none;
-    position: absolute;
-    top: 85%;
-    border-radius: 3px;
-    border-color: rgb(0, 0, 0);
-    border: solid;
-    background-color: #ffffff;
+
+/*EMOJI */
+
+.field input {
+    height: 40px;
+    width: 75vw;
+    margin-left: -15px;
+    margin-top: 5px;
+    font-size: 130%;
+
+}
+
+#typing {
+  display: inline-block;
+}
+
+#emojiPicker {
+  position: absolute;
+  top: -250px;
+}
+
+#emojiPickerWrap {
+    margin: 10px 0 0 0;
 }
 
 :root {
