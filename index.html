@@ -33,7 +33,7 @@
         <div class="controls">
 
             <div class="field" id="typing">
-                <input type="text" id="input-default" class="emojiable-option" placeholder="Default">
+                <input type="text" id="input-default" class="emojiable-option">
             </div>
 
             <div id="typing">
@@ -50,6 +50,7 @@
         $(document).ready(function(e) {
 
             $('#input-default').emojiPicker();
+          
 
             // keyup event is fired
             $(".emojiable-option").on("keyup", function() {
@@ -66,8 +67,8 @@
         var user = prompt("What's your name?");
 
         $('form').submit(function() {
-            socket.emit('chat message', $('#type').val());
-            $('#type').val('');
+            socket.emit('chat message', $('#input-default').val());
+            $('#input-default').val('');
             return false;
         });
         socket.on('chat message', function(msg) {
