@@ -16,7 +16,7 @@ io.on('connection', function(socket) {
     console.log('a user connected');
 
     socket.on("join", function(user) {
-
+        socket.nickname = user;
         onlineUsers.push(user);
         io.emit("user list", onlineUsers);
         var name = onlineUsers.indexOf(user);
@@ -25,12 +25,18 @@ io.on('connection', function(socket) {
     });
     socket.on('chat message', function(msg) {
         console.log('message: ' + msg);
-        io.emit('chat message', msg);
+
+        var nickname = socket.nickname;
+
+        io.emit('chat message', nickname + ": " + msg);
+      
+
     });
     socket.on('disconnect', function() {
         console.log('user disconnected');
 
     });
+
 
 });
 

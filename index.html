@@ -50,7 +50,7 @@
         $(document).ready(function(e) {
 
             $('#input-default').emojiPicker();
-          
+
 
             // keyup event is fired
             $(".emojiable-option").on("keyup", function() {
@@ -63,10 +63,10 @@
 
 
 
-        var socket = io();
-        var user = prompt("What's your name?");
+        var socket = io.connect();
 
-        $('form').submit(function() {
+
+        $('form').submit(function(e) {
             socket.emit('chat message', $('#input-default').val());
             $('#input-default').val('');
             return false;
@@ -75,11 +75,17 @@
             $('#messages').append($('<li>').text(msg));
 
         });
-        socket.emit("join", user);
-        socket.on('user list', function(onlineUsers) {
+
+        socket.on("connect", function(msg){
+          nickname = prompt("What's your name?");
+          socket.emit("join", nickname);
+        });
+
+
+        socket.on('user list', function(user) {
             $("#username").empty();
-            for (var i = 0; i < onlineUsers.length; i++) {
-                $("#username").append($("<p>").text(onlineUsers[i]));
+            for (var i = 0; i < user.length; i++) {
+                $("#username").append($("<p>").text(user[i]));
             }
         });
 
