@@ -24,17 +24,22 @@ io.on('connection', function(socket) {
 
     });
     socket.on('chat message', function(msg) {
-        console.log('message: ' + msg);
-
+        console.log('message: ' + msg + time);
+        var today = new Date();
+        var hour = today.getHours();
+        var min = today.getMinutes();
+        var time = hour + ":" + min;
         var nickname = socket.nickname;
 
-        io.emit('chat message', nickname + ": " + msg);
-      
+        io.emit('chat message', time + "   " + nickname + ": " + msg);
+
 
     });
     socket.on('disconnect', function() {
         console.log('user disconnected');
-
+        const index = onlineUsers.findIndex(user => user.nickname === user);
+        onlineUsers.splice(index);
+        console.log(onlineUsers);
     });
 
 

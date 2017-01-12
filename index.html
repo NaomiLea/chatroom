@@ -47,6 +47,7 @@
     </form>
 
     <script>
+        //EMOJI CODE
         $(document).ready(function(e) {
 
             $('#input-default').emojiPicker();
@@ -60,9 +61,7 @@
         });
 
 
-
-
-
+        //SOCKET.IO
         var socket = io.connect();
 
 
@@ -76,9 +75,9 @@
 
         });
 
-        socket.on("connect", function(msg){
-          nickname = prompt("What's your name?");
-          socket.emit("join", nickname);
+        socket.on("connect", function(msg) {
+            nickname = prompt("What's your name?");
+            socket.emit("join", nickname);
         });
 
 
