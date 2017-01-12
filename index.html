@@ -20,32 +20,40 @@
 </head>
 
 <body>
-    <div id="chatlog" class="col-sm-9">
-
-        <ul id="messages"></ul>
-    </div>
-    <div id="online" class="col-sm-3">
-        <div id="username"></div>
-    </div>
-
-
-    <form class="col-sm-12" action="">
-        <div class="controls">
-
-            <div class="field" id="typing">
-                <input type="text" id="input-default" class="emojiable-option">
-            </div>
-
-            <div id="typing">
-                <input type="submit" id="submit" />
-                <label for="base">Change text color</label>
-                <input id="base" type="color" name="base" value="#ffc600">
-            </div>
-
+    <div class="row">
+        <div id="online" class="col-sm-3">
+            <div id="username"></div>
         </div>
 
-    </form>
+        <div class="flex">
+            <div id="chatlog" class="col-sm-9">
 
+                <ul id="messages"></ul>
+
+            </div>
+
+
+
+            <form class="col-sm-12" action="" id="form">
+                <div class="controls">
+
+                    <div class="field" id="typing">
+                        <input type="text" id="input-default" class="emojiable-option">
+                    </div>
+
+                    <div id="typing">
+                        <input type="submit" id="submit" />
+                        <label for="base">Change text color</label>
+                        <input id="base" type="color" name="base" value="#ffc600">
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <audio src="messenger.wav" type="audio/wav" id="signal"></audio>
     <script>
         //EMOJI CODE
         $(document).ready(function(e) {
@@ -76,6 +84,7 @@
         });
         socket.on('chat message', function(msg) {
             $('#messages').append($('<li>').text(msg));
+            $('#signal').get(0).play();
 
         });
 
@@ -89,10 +98,11 @@
             console.log(user);
             $("#username").empty();
             for (var i = 0; i < user.length; i++) {
-                $("#username").append($("<p>").text(user[i].name));
+                $("#username").append($("<p class='online'>").text(user[i].name));
 
             }
         });
+
 
 
 

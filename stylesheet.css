@@ -1,26 +1,29 @@
+body {}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    flex: 100%;
+}
+
 #messages {
     color: var(--base)
 }
 
 #online {
     background-color: rgb(206, 208, 212);
-    height: 100vh;
 }
 
 form {
-    margin-top: -50px;
     background-color: rgb(49, 95, 156);
-    height: 50px;
 }
 
 #submit {
     background-color: rgb(187, 192, 203);
     border: none;
-    height: 37px;
     width: 5vw;
     font-family: "Mirza";
     font-size: 130%;
-
 }
 
 ul {
@@ -31,21 +34,27 @@ ul {
 /*EMOJI */
 
 .field input {
-    height: 40px;
     width: 75vw;
     margin-left: -15px;
-    margin-top: 5px;
     font-size: 130%;
+}
 
+.chatlog {
+    overflow: scroll;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }
 
 #typing {
-  display: inline-block;
+    display: inline-block;
 }
 
 #emojiPicker {
-  position: absolute;
-  top: -250px;
+    position: absolute;
+    top: -250px;
 }
 
 #emojiPickerWrap {
@@ -56,7 +65,13 @@ ul {
     --base: rgb(0, 0, 0);
 }
 
-
 .userName {
-  font-weight: bold;
+    font-weight: bold;
+    color: #000000;
+}
+
+.online {
+    font-weight: bold;
+    color: #51af18;
+    heigth: 100%;
 }
