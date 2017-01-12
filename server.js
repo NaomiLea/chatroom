@@ -16,30 +16,40 @@ io.on('connection', function(socket) {
     console.log('a user connected');
 
     socket.on("join", function(user) {
+        var people = {};
+        people.name = user;
+        people.socketid = socket.id;
+        io.emit("update-people", people);
         socket.nickname = user;
-        onlineUsers.push(user);
+        onlineUsers.push(people);
         io.emit("user list", onlineUsers);
-        var name = onlineUsers.indexOf(user);
-        console.log(name);
+
 
     });
     socket.on('chat message', function(msg) {
-        console.log('message: ' + msg + time);
+
         var today = new Date();
         var hour = today.getHours();
         var min = today.getMinutes();
         var time = hour + ":" + min;
         var nickname = socket.nickname;
-
         io.emit('chat message', time + "   " + nickname + ": " + msg);
 
 
     });
     socket.on('disconnect', function() {
+
         console.log('user disconnected');
-        const index = onlineUsers.findIndex(user => user.nickname === user);
-        onlineUsers.splice(index);
-        console.log(onlineUsers);
+
+
+        for (var i = 0; i < onlineUsers.length; i++) {
+            if (onlineUsers[i].socketid == socket.id) {
+                onlineUsers.splice(i, 1);
+            };
+
+        }
+        io.emit("user list", onlineUsers);
+
     });
 
 

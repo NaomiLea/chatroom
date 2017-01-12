@@ -82,9 +82,11 @@
 
 
         socket.on('user list', function(user) {
+            console.log(user);
             $("#username").empty();
             for (var i = 0; i < user.length; i++) {
-                $("#username").append($("<p>").text(user[i]));
+                $("#username").append($("<p>").text(user[i].name));
+
             }
         });
 
