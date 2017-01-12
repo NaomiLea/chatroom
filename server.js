@@ -31,9 +31,11 @@ io.on('connection', function(socket) {
         var today = new Date();
         var hour = today.getHours();
         var min = today.getMinutes();
+        min = min > 9 ? min: '0' + min;
         var time = hour + ":" + min;
         var nickname = socket.nickname;
-        io.emit('chat message', time + "   " + nickname + ": " + msg);
+        io.emit('user message', time + "   " + nickname);
+        io.emit('chat message', msg);
 
 
     });
