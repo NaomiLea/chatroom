@@ -1,9 +1,15 @@
-body {}
+body{
+  overflow: hidden;
+}
+
+:root {
+    --base: rgb(0, 0, 0);
+}
 
 .flex {
     display: flex;
     flex-direction: column;
-    flex: 100%;
+    max-height: 100vh;
 }
 
 #messages {
@@ -12,10 +18,14 @@ body {}
 
 #online {
     background-color: rgb(206, 208, 212);
+    width: 30vw;
 }
 
 form {
     background-color: rgb(49, 95, 156);
+    height: 5vh;
+
+
 }
 
 #submit {
@@ -24,6 +34,7 @@ form {
     width: 5vw;
     font-family: "Mirza";
     font-size: 130%;
+    height: 4vh;
 }
 
 ul {
@@ -34,22 +45,26 @@ ul {
 /*EMOJI */
 
 .field input {
-    width: 75vw;
+    width: 60vw;
     margin-left: -15px;
     font-size: 130%;
+    height: 5vh;
 }
 
-.chatlog {
+#chatlog {
     overflow: scroll;
+    width: 73vw;
+    height: 95vh;
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 #typing {
     display: inline-block;
+
 }
 
 #emojiPicker {
@@ -59,10 +74,6 @@ ul {
 
 #emojiPickerWrap {
     margin: 10px 0 0 0;
-}
-
-:root {
-    --base: rgb(0, 0, 0);
 }
 
 .userName {
