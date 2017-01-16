@@ -1,5 +1,6 @@
 body{
-  overflow-x: hidden;
+  overflow: hidden;
+
 }
 
 :root {
@@ -72,8 +73,8 @@ ul {
 }
 
 .emojiPicker {
-  top: 25vh !important;
-  position: absolute !important;
+  top: -450px !important;
+  position: relative !important;
 }
 
 #emojiPickerWrap {
