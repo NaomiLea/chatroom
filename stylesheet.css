@@ -1,5 +1,5 @@
 body{
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 :root {
@@ -23,7 +23,7 @@ body{
 
 form {
     background-color: rgb(49, 95, 156);
-    height: 5vh;
+    height: 8vh;
 
 
 }
@@ -45,16 +45,16 @@ ul {
 /*EMOJI */
 
 .field input {
-    width: 60vw;
+    width: 50vw;
     margin-left: -15px;
     font-size: 130%;
-    height: 5vh;
+    height: 8vh;
 }
 
 #chatlog {
     overflow: scroll;
-    width: 73vw;
-    height: 95vh;
+    width: 71vw;
+    height: 92vh;
 }
 
 .row {
@@ -67,9 +67,13 @@ ul {
 
 }
 
-#emojiPicker {
-    position: absolute;
-    top: -250px;
+.controls {
+  display: inline-block;
+}
+
+.emojiPicker {
+  top: 25vh !important;
+  position: absolute !important;
 }
 
 #emojiPickerWrap {
