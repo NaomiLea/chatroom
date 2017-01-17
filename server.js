@@ -11,11 +11,11 @@ app.use(express.static(__dirname + '/'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.get('/', function(req, res) {
+app.get('/index', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.post("/loaded", function() {
+app.post("/loaded", function(req, res) {
     console.log("Hello");
 });
 

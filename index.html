@@ -34,7 +34,7 @@
 
 
             <div>
-                <form class="col-sm-12" action="" id="form">
+                <form class="col-sm-12" action="index" id="form">
                     <div class="controls">
 
                         <div class="field" id="typing">
@@ -52,33 +52,37 @@
                     </div>
             </div>
 
-            <div class="upload">
-                <div class="container">
-                    <div class="row">
 
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <span class="glyphicon glyphicon-cloud-upload"></span>
-                                <h2>Upload file</h2>
-
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar"></div>
-                                </div>
-
-                            </div>
-                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
-                            <div id="sendFile" class="submission" method="post" action="loaded">Send</div>
-                            <div id="close" class="submission">Close</div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
 
 
 
             </form>
+        </div>
+    </div>
+
+    <div class="upload">
+        <div class="container">
+            <div class="row">
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                        <h2>Upload file</h2>
+
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar"></div>
+                        </div>
+
+                    </div>
+                    <form action="loaded">
+                        <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+                        <button id="sendFile" class="submission">Send</button>
+                        <div id="close" class="submission">Close</div>
+                    </form>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
@@ -102,7 +106,7 @@
         var socket = io.connect();
 
 
-        $('form').submit(function(e) {
+        $('#form').submit(function(e) {
             socket.emit('chat message', $('#input-default').val());
             $('#input-default').val('');
             return false;
