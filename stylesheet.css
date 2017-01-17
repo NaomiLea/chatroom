@@ -29,6 +29,13 @@ form {
 
 }
 
+.upload {
+  display: block;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+}
+
 #submit {
     background-color: rgb(187, 192, 203);
     border: none;

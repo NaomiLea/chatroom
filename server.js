@@ -4,8 +4,11 @@ var io = require('socket.io')(http);
 var express = require("express");
 var port = 3000;
 var onlineUsers = [];
-console.log(onlineUsers);
+var formidable = require('formidable');
+var path = require('path');
+var fs = require('fs');
 app.use(express.static(__dirname + '/'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', function(req, res) {
@@ -31,7 +34,7 @@ io.on('connection', function(socket) {
         var today = new Date();
         var hour = today.getHours();
         var min = today.getMinutes();
-        min = min > 9 ? min: '0' + min;
+        min = min > 9 ? min : '0' + min;
         var time = hour + ":" + min;
         var nickname = socket.nickname;
         io.emit('user message', time + " " + nickname);
@@ -55,6 +58,25 @@ io.on('connection', function(socket) {
     });
 
 
+});
+
+//Uploading document
+
+app.post('/upload', function(req, res) {
+    var form = new formidable.IncomingForm();
+    form.multiples = false;
+    form.uploadDir = path.join(__dirname, "/uploads");
+    form.on('file', function(field, file) {
+        fs.rename(file.path, path.join(form.uploadDir, file.name));
+    });
+    form.on('error', function(err) {
+        console.log('An error has occured: \n' + err);
+    });
+
+    form.on('end', function() {
+        res.end('success');
+    });
+form.parse(req);
 });
 
 http.listen(port, function() {
