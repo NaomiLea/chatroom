@@ -29,6 +29,10 @@ form {
 
 }
 
+.submission {
+  display: inline-block;
+}
+
 .upload {
   display: block;
   position: absolute;
@@ -47,6 +51,21 @@ form {
 
 ul {
     list-style-type: none;
+}
+
+#sendFile, #close {
+  border: solid;
+  border-width: 0.5px;
+  border-color: #000000;
+  background-color: #edeef7;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#upload {
+  font-size: 24px;
+  margin-left: 10px;
+
 }
 
 

@@ -44,39 +44,42 @@
                         <div id="typing">
                             <input type="submit" id="submit" />
                             <label for="base">Text color</label>
-                            <input id="base" type="color" name="base" value="#ffc600">
-                            <button id="upload">Upload</div>
+                            <input class="submission" id="base" type="color" name="base" value="#ffc600">
+                            <div id="upload" class="submission">
+                                <span class="glyphicon glyphicon-paperclip"></span>
+                            </div>
                         </div>
                     </div>
             </div>
 
             <div class="upload">
-              <div class="container">
-                <div class="row">
+                <div class="container">
+                    <div class="row">
 
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <span class="glyphicon glyphicon-cloud-upload"></span>
-                        <h2>Upload file</h2>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <span class="glyphicon glyphicon-cloud-upload"></span>
+                                <h2>Upload file</h2>
 
-                        <div class="progress">
-                        <div class="progress-bar" role="progressbar"></div>
-                      </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar"></div>
+                                </div>
 
+                            </div>
+                            <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
+                            <div id="sendFile" class="submission" method="post" action="loaded">Send</div>
+                            <div id="close" class="submission">Close</div>
                         </div>
-                        <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
-                        <button id="sendFile">Send</button>
+
                     </div>
 
+                </div>
             </div>
 
+
+
+            </form>
         </div>
-    </div>
-
-
-
-    </form>
-    </div>
     </div>
 
     <audio src="messenger.wav" type="audio/wav" id="signal"></audio>
@@ -114,6 +117,7 @@
 
         });
 
+
         socket.on("connect", function(msg) {
             nickname = prompt("What's your name?");
             socket.emit("join", nickname);
@@ -129,9 +133,6 @@
             }
         });
 
-
-
-
         //Changing of color
         const inputs = document.querySelectorAll(".controls input");
 
@@ -142,6 +143,8 @@
         }
         inputs.forEach(input => input.addEventListener("change", handleUpdate));
         inputs.forEach(input => input.addEventListener("mousemove", handleUpdate));
+
+        //Emojis
 
         function emojiBox() {
             var div = document.getElementById('emojis');
@@ -217,6 +220,18 @@
                 });
 
             }
+        });
+
+        $("#sendFile").click(function() {
+            $(".upload").css("display", "none");
+        });
+
+        $("#close").click(function() {
+            $(".upload").css("display", "none");
+        });
+
+        $("#upload").click(function() {
+            $(".upload").css("display", "block");
         });
     </script>
 

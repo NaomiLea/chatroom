@@ -15,6 +15,10 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.post("/loaded", function() {
+    console.log("Hello");
+});
+
 io.on('connection', function(socket) {
     console.log('a user connected');
 
@@ -76,7 +80,8 @@ app.post('/upload', function(req, res) {
     form.on('end', function() {
         res.end('success');
     });
-form.parse(req);
+
+    form.parse(req);
 });
 
 http.listen(port, function() {
