@@ -70,11 +70,12 @@ ul {
 
 #documentUpload {
     background-color: white;
-    height: 100px;
+    height: 230px;
 }
 
 #documentUpload input {
   margin-left: 20px;
+  margin-top: 10px;
 }
 
 
@@ -124,4 +125,10 @@ ul {
     font-weight: bold;
     color: #51af18;
     heigth: 100%;
+}
+
+#blah {
+  max-width: 200px;
+  max-height: 200px;
+  margin-left: 20px;
 }

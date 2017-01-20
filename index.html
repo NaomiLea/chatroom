@@ -76,6 +76,7 @@
                     </div>
                     <form id="documentUpload">
                         <input id="upload-input" type="file" name="uploads[]"></br>
+                        <img id="blah" src="#" alt="your image" /></br>
                         <input type="submit" id="sendFile" />
                         <div id="close" class="submission">Close</div>
                     </form>
@@ -241,6 +242,23 @@
 
         $("#upload").click(function() {
             $(".upload").css("display", "block");
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#upload-input").change(function() {
+            readURL(this);
         });
     </script>
 
