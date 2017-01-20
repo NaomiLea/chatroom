@@ -74,9 +74,9 @@
                         </div>
 
                     </div>
-                    <form action="loaded">
-                        <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
-                        <button id="sendFile" class="submission">Send</button>
+                    <form id="documentUpload">
+                        <input id="upload-input" type="file" name="uploads[]"></br>
+                        <input type="submit" id="sendFile" />
                         <div id="close" class="submission">Close</div>
                     </form>
                 </div>
@@ -105,12 +105,17 @@
         //SOCKET.IO
         var socket = io.connect();
 
-
+        $("#documentUpload").submit(function(e) {
+            socket.emit("upload file", "hello");
+            return false;
+        })
         $('#form').submit(function(e) {
             socket.emit('chat message', $('#input-default').val());
             $('#input-default').val('');
             return false;
         });
+
+
         socket.on('user message', function(msg) {
             $('#messages').append($('<li class="userName">').text(msg));
 

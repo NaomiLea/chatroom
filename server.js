@@ -15,9 +15,9 @@ app.get('/index', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.post("/loaded", function(req, res) {
-    console.log("Hello");
-});
+// app.post("/loaded", function(req, res) {
+//     console.log("hello");
+// });
 
 io.on('connection', function(socket) {
     console.log('a user connected');
@@ -46,6 +46,10 @@ io.on('connection', function(socket) {
 
 
     });
+
+    socket.on("user message", function(document){
+      io.emit("user message", console.log("Hello"))
+    })
     socket.on('disconnect', function() {
 
         console.log('user disconnected');

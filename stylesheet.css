@@ -1,6 +1,5 @@
-body{
-  overflow: hidden;
-
+body {
+    overflow: hidden;
 }
 
 :root {
@@ -25,19 +24,17 @@ body{
 form {
     background-color: rgb(49, 95, 156);
     height: 8vh;
-
-
 }
 
 .submission {
-  display: inline-block;
+    display: inline-block;
 }
 
 .upload {
-  display: block;
-  position: absolute;
-  top: 25%;
-  left: 50%;
+    display: block;
+    position: absolute;
+    top: 25%;
+    left: 50%;
 }
 
 #submit {
@@ -46,7 +43,7 @@ form {
     width: 5vw;
     font-family: "Mirza";
     font-size: 130%;
-    height: 4vh;
+    height: 7vh;
 }
 
 ul {
@@ -54,18 +51,30 @@ ul {
 }
 
 #sendFile, #close {
-  border: solid;
-  border-width: 0.5px;
-  border-color: #000000;
-  background-color: #edeef7;
-  font-weight: bold;
-  cursor: pointer;
+    border: solid;
+    border-width: 0.5px;
+    border-color: #000000;
+    background-color: #edeef7;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px 0 5px;
 }
 
 #upload {
-  font-size: 24px;
-  margin-left: 10px;
+    font-size: 24px;
+    margin-left: 10px;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+}
 
+#documentUpload {
+    background-color: white;
+    height: 100px;
+}
+
+#documentUpload input {
+  margin-left: 20px;
 }
 
 
@@ -91,16 +100,15 @@ ul {
 
 #typing {
     display: inline-block;
-
 }
 
 .controls {
-  display: inline-block;
+    display: inline-block;
 }
 
 .emojiPicker {
-  top: -450px !important;
-  position: relative !important;
+    top: -450px !important;
+    position: relative !important;
 }
 
 #emojiPickerWrap {
