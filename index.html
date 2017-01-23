@@ -68,20 +68,22 @@
 
     <audio src="messenger.wav" type="audio/wav" id="signal"></audio>
     <script>
-        //SOCKET.IO
         var socket = io.connect();
 
         $("#documentUpload").submit(function(e) {
-            socket.emit("upload file", "hello");
+            var file = document.getElementById('upload-input').value;
+            socket.emit("upload file", file);
+            console.log(file);
             return false;
         })
+        //Receiving text from input
         $('#form').submit(function(e) {
             socket.emit('chat message', $('#input-default').val());
             $('#input-default').val('');
             return false;
         });
 
-
+        //appending message to chatlog
         socket.on('user message', function(msg) {
             $('#messages').append($('<li class="userName">').text(msg));
 
