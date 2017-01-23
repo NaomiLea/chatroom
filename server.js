@@ -8,16 +8,10 @@ var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
 app.use(express.static(__dirname + '/'));
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.get('/index', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
-
-// app.post("/loaded", function(req, res) {
-//     console.log("hello");
-// });
 
 io.on('connection', function(socket) {
     console.log('a user connected');
@@ -34,7 +28,6 @@ io.on('connection', function(socket) {
 
     });
     socket.on('chat message', function(msg) {
-
         var today = new Date();
         var hour = today.getHours();
         var min = today.getMinutes();
@@ -43,8 +36,6 @@ io.on('connection', function(socket) {
         var nickname = socket.nickname;
         io.emit('user message', time + " " + nickname);
         io.emit('chat message', msg);
-
-
     });
 
     socket.on("user message", function(document){
@@ -53,8 +44,6 @@ io.on('connection', function(socket) {
     socket.on('disconnect', function() {
 
         console.log('user disconnected');
-
-
         for (var i = 0; i < onlineUsers.length; i++) {
             if (onlineUsers[i].socketid == socket.id) {
                 onlineUsers.splice(i, 1);
@@ -64,8 +53,6 @@ io.on('connection', function(socket) {
         io.emit("user list", onlineUsers);
 
     });
-
-
 });
 
 //Uploading document

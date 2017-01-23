@@ -3,16 +3,13 @@
 
 <head>
 
-    <!-- Latest compiled and minified CSS -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">
-    <!-- <script src="index.js"></script> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.css">
     <script type="text/javascript" src="js/jquery.emojipicker.js"></script>
-
-    <!-- Emoji Data -->
     <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.a.css">
     <script type="text/javascript" src="js/jquery.emojis.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -24,23 +21,16 @@
         <div id="online" class="col-sm-3">
             <div id="username"></div>
         </div>
-
         <div class="flex">
             <div id="chatlog" class="col-sm-9">
-
                 <ul id="messages"></ul>
-
             </div>
-
-
             <div>
                 <form class="col-sm-12" action="index" id="form">
                     <div class="controls">
-
                         <div class="field" id="typing">
                             <input type="text" id="input-default" class="emojiable-option">
                         </div>
-
                         <div id="typing">
                             <input type="submit" id="submit" />
                             <label for="base">Text color</label>
@@ -50,29 +40,20 @@
                             </div>
                         </div>
                     </div>
+                </form>
             </div>
-
-
-
-
-
-            </form>
         </div>
     </div>
-
     <div class="upload">
         <div class="container">
             <div class="row">
-
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <span class="glyphicon glyphicon-cloud-upload"></span>
                         <h2>Upload file</h2>
-
                         <div class="progress">
                             <div class="progress-bar" role="progressbar"></div>
                         </div>
-
                     </div>
                     <form id="documentUpload">
                         <input id="upload-input" type="file" name="uploads[]"></br>
@@ -81,28 +62,12 @@
                         <div id="close" class="submission">Close</div>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
 
     <audio src="messenger.wav" type="audio/wav" id="signal"></audio>
     <script>
-        //EMOJI CODE
-        $(document).ready(function(e) {
-
-            $('#input-default').emojiPicker();
-
-
-            // keyup event is fired
-            $(".emojiable-option").on("keyup", function() {
-                //console.log("emoji added, input val() is: " + $(this).val());
-            });
-
-        });
-
-
         //SOCKET.IO
         var socket = io.connect();
 
@@ -259,6 +224,13 @@
 
         $("#upload-input").change(function() {
             readURL(this);
+        });
+
+        //EMOJI CODE
+        $(document).ready(function(e) {
+
+            $('#input-default').emojiPicker();
+
         });
     </script>
 
