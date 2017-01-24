@@ -7,6 +7,7 @@ var onlineUsers = [];
 var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
+var numberOnline = 0;
 app.use(express.static(__dirname + '/'));
 
 app.get('/index', function(req, res) {
@@ -24,7 +25,9 @@ io.on('connection', function(socket) {
         socket.nickname = user;
         onlineUsers.push(people);
         io.emit("user list", onlineUsers);
-
+        numberOnline++;
+        console.log(numberOnline);
+        io.emit('people online', "People online: " + numberOnline);
 
     });
     socket.on('chat message', function(msg) {
@@ -34,15 +37,14 @@ io.on('connection', function(socket) {
         min = min > 9 ? min : '0' + min;
         var time = hour + ":" + min;
         var nickname = socket.nickname;
+
         io.emit('user message', time + " " + nickname);
         io.emit('chat message', msg);
+        io.emit("upload file", msg);
     });
 
-    socket.on("user message", function(document){
-      io.emit("user message", console.log("Hello"))
-    })
     socket.on('disconnect', function() {
-
+        numberOnline--;
         console.log('user disconnected');
         for (var i = 0; i < onlineUsers.length; i++) {
             if (onlineUsers[i].socketid == socket.id) {
@@ -51,8 +53,9 @@ io.on('connection', function(socket) {
 
         }
         io.emit("user list", onlineUsers);
-
+        io.emit('people online', "People online: " + numberOnline);
     });
+    console.log(numberOnline);
 });
 
 //Uploading document
@@ -78,3 +81,5 @@ app.post('/upload', function(req, res) {
 http.listen(port, function() {
     console.log('listening on *:' + port);
 });
+
+console.log(numberOnline);

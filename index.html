@@ -19,7 +19,10 @@
 <body>
     <div class="row">
         <div id="online" class="col-sm-3">
-            <div id="username"></div>
+            <div id="username">
+
+            </div>
+            <button id="privateChat">Send private message</button>
         </div>
         <div class="flex">
             <div id="chatlog" class="col-sm-9">
@@ -73,7 +76,7 @@
         $("#documentUpload").submit(function(e) {
             var file = document.getElementById('upload-input').value;
             socket.emit("upload file", file);
-            console.log(file);
+
             return false;
         })
         //Receiving text from input
@@ -81,6 +84,11 @@
             socket.emit('chat message', $('#input-default').val());
             $('#input-default').val('');
             return false;
+        });
+
+        socket.on('people online', function(msg) {
+            $('#username').append($('<li class="userName">').text(msg));
+
         });
 
         //appending message to chatlog
@@ -93,7 +101,12 @@
             // $('#signal').get(0).play();
 
         });
+        socket.on('upload file', function(msg) {
+            $('#messages').append($('<li>').text(file));
+            // $('#signal').get(0).play();
+            console.log(file);
 
+        });
 
         socket.on("connect", function(msg) {
             nickname = prompt("What's your name?");
@@ -144,7 +157,7 @@
         $('#upload-input').on('change', function() {
 
             var files = $(this).get(0).files;
-
+            console.log(files);
             if (files.length > 0) {
                 // create a FormData object which will be sent as the data payload in the
                 // AJAX request
