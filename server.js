@@ -8,6 +8,9 @@ var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
 var numberOnline = 0;
+var uuid = require('node-uuid');
+var Room = require('./room.js');
+var rooms = {};
 app.use(express.static(__dirname + '/'));
 
 app.get('/index', function(req, res) {
@@ -18,9 +21,15 @@ io.on('connection', function(socket) {
     console.log('a user connected');
 
     socket.on("join", function(user) {
+        roomID = null;
         var people = {};
         people.name = user;
         people.socketid = socket.id;
+        people[user.id] = {
+            "name": user,
+            "room": roomID
+        };
+        console.log(people.name)
         io.emit("update-people", people);
         socket.nickname = user;
         onlineUsers.push(people);
@@ -28,7 +37,10 @@ io.on('connection', function(socket) {
         numberOnline++;
         console.log(numberOnline);
         io.emit('people online', "People online: " + numberOnline);
-      
+        io.emit("roomList", {
+            rooms: rooms
+        });
+
 
     });
     socket.on('chat message', function(msg) {
@@ -57,6 +69,23 @@ io.on('connection', function(socket) {
         io.emit('people online', "People online: " + numberOnline);
     });
     console.log(numberOnline);
+});
+io.on("createRoom", function(name) {
+    if (people[user.id].room === null) {
+        var id = uuid.v4();
+        var room = new Room(user, id, user.id);
+        rooms[id] = room;
+        socket.sockets.emit("roomList", {
+            rooms: rooms
+        }); //update the list of rooms on the frontend
+        io.room = name; //name the room
+        io.join(user.room); //auto-join the creator to the room
+        room.addPerson(client.id); //also add the person to the room object
+        people[user.id].room = id; //update the room key with the ID of the created room
+    } else {
+        socket.sockets.emit("update", "You have already created a room.");
+    }
+    console.log("hello");
 });
 
 //Uploading document

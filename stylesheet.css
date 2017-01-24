@@ -2,6 +2,10 @@ body {
     overflow: hidden;
 }
 
+.chooseUser {
+    display: none;
+}
+
 :root {
     --base: rgb(0, 0, 0);
 }
@@ -13,7 +17,9 @@ body {
 }
 
 #messages {
-    color: var(--base)
+    color: var(--base);
+    word-wrap: break-word;
+
 }
 
 #online {
@@ -28,6 +34,10 @@ form {
 
 .submission {
     display: inline-block;
+}
+
+#input-default {
+    word-wrap: break-word;
 }
 
 .upload {
@@ -74,8 +84,8 @@ ul {
 }
 
 #documentUpload input {
-  margin-left: 20px;
-  margin-top: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 
@@ -128,21 +138,20 @@ ul {
 }
 
 #blah {
-  max-width: 200px;
-  max-height: 200px;
-  margin-left: 20px;
+    max-width: 200px;
+    max-height: 200px;
+    margin-left: 20px;
 }
 
 .chooseUser {
-  background-color: rgba(111, 96, 99, 0.55);
-  width: 30vw;
-  height: 40vh;
-  border-radius: 10px;
-
+    background-color: rgba(111, 96, 99, 0.55);
+    width: 30vw;
+    height: 40vh;
+    border-radius: 10px;
 }
 
 .chooseUser input {
-  margin-left: 50px;
-  margin-right: -50px;
-  margin-top: 10px;
+    margin-left: 50px;
+    margin-right: -50px;
+    margin-top: 10px;
 }
