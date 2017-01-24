@@ -132,3 +132,17 @@ ul {
   max-height: 200px;
   margin-left: 20px;
 }
+
+.chooseUser {
+  background-color: rgba(111, 96, 99, 0.55);
+  width: 30vw;
+  height: 40vh;
+  border-radius: 10px;
+
+}
+
+.chooseUser input {
+  margin-left: 50px;
+  margin-right: -50px;
+  margin-top: 10px;
+}

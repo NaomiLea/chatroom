@@ -28,6 +28,7 @@ io.on('connection', function(socket) {
         numberOnline++;
         console.log(numberOnline);
         io.emit('people online', "People online: " + numberOnline);
+      
 
     });
     socket.on('chat message', function(msg) {

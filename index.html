@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Mirza" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.emojipicker.css">
     <script type="text/javascript" src="js/jquery.emojipicker.js"></script>
@@ -27,6 +29,10 @@
         <div class="flex">
             <div id="chatlog" class="col-sm-9">
                 <ul id="messages"></ul>
+                <div class=chooseUser>
+                    <input type="text" id="available">
+                    <input type="submit">
+                </div>
             </div>
             <div>
                 <form class="col-sm-12" action="index" id="form">
@@ -73,6 +79,10 @@
     <script>
         var socket = io.connect();
 
+
+
+
+
         $("#documentUpload").submit(function(e) {
             var file = document.getElementById('upload-input').value;
             socket.emit("upload file", file);
@@ -115,12 +125,24 @@
 
 
         socket.on('user list', function(user) {
-            console.log(user);
+
             $("#username").empty();
             for (var i = 0; i < user.length; i++) {
                 $("#username").append($("<p class='online'>").text(user[i].name));
 
             }
+
+            $(function() {
+                var availableUsers = [];
+
+                for (var i = 0; i < user.length; i++) {
+                    availableUsers.push(user[i].name);
+                }
+                $("#available").autocomplete({
+                    source: availableUsers
+                });
+                console.log(availableUsers);
+            });
         });
 
         //Changing of color
