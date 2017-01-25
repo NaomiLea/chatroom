@@ -3,7 +3,7 @@ body {
 }
 
 .chooseUser {
-    display: none;
+    display: block;
 }
 
 :root {

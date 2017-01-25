@@ -25,13 +25,17 @@
 
             </div>
             <button id="privateChat">Send private message</button>
+
         </div>
         <div class="flex">
             <div id="chatlog" class="col-sm-9">
                 <ul id="messages"></ul>
                 <div class=chooseUser>
                     <input type="text" id="available">
-                    <input type="submit">
+                    <button type="submit" id="searchUser">Chat</button>
+                </div>
+                <div id="privateChatMessages">
+                    <ul id="privateMessage"></ul>
                 </div>
             </div>
             <div>
@@ -79,10 +83,6 @@
     <script>
         var socket = io.connect();
 
-
-
-
-
         $("#documentUpload").submit(function(e) {
             var file = document.getElementById('upload-input').value;
             socket.emit("upload file", file);
@@ -93,7 +93,16 @@
         $('#form').submit(function(e) {
             socket.emit('chat message', $('#input-default').val());
             $('#input-default').val('');
+
             return false;
+
+        });
+
+        $('#searchUser').click(function(e) {
+            socket.emit('private chat', $('#available').val());
+            var searching = $('#available').val('');
+            return false;
+
         });
 
         socket.on('people online', function(msg) {
@@ -111,12 +120,17 @@
             // $('#signal').get(0).play();
 
         });
-        socket.on('upload file', function(msg) {
-            $('#messages').append($('<li>').text(file));
-            // $('#signal').get(0).play();
-            console.log(file);
+
+        socket.on("private chat", function(msg) {
+            $('#privateMessage').append($('<li>').text(msg));
 
         });
+        // socket.on('upload file', function(msg) {
+        //     $('#messages').append($('<li>').text(file));
+        //     // $('#signal').get(0).play();
+        //     console.log(file);
+        //
+        // });
 
         socket.on("connect", function(msg) {
             nickname = prompt("What's your name?");
@@ -168,6 +182,10 @@
             }
         };
 
+        // $("#searchUser").click(function() {
+        //   console.log($('#available').val());
+        //
+        // });
         //upload file
 
         $('.upload-btn').on('click', function() {
@@ -192,44 +210,44 @@
                     // add the files to formData object for the data payload
                     formData.append('uploads[]', file, file.name);
                 }
-
-                $.ajax({
-                    url: '/upload',
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-                        console.log('upload successful!\n' + data);
-                    },
-                    xhr: function() {
-                        // create an XMLHttpRequest
-                        var xhr = new XMLHttpRequest();
-
-                        // listen to the 'progress' event
-                        xhr.upload.addEventListener('progress', function(evt) {
-
-                            if (evt.lengthComputable) {
-                                // calculate the percentage of upload completed
-                                var percentComplete = evt.loaded / evt.total;
-                                percentComplete = parseInt(percentComplete * 100);
-
-                                // update the Bootstrap progress bar with the new percentage
-                                $('.progress-bar').text(percentComplete + '%');
-                                $('.progress-bar').width(percentComplete + '%');
-
-                                // once the upload reaches 100%, set the progress bar text to done
-                                if (percentComplete === 100) {
-                                    $('.progress-bar').html('Done');
-                                }
-
-                            }
-
-                        }, false);
-
-                        return xhr;
-                    }
-                });
+                //
+                // $.ajax({
+                //     url: '/upload',
+                //     type: 'POST',
+                //     data: formData,
+                //     processData: false,
+                //     contentType: false,
+                //     success: function(data) {
+                //         console.log('upload successful!\n' + data);
+                //     },
+                //     xhr: function() {
+                //         // create an XMLHttpRequest
+                //         var xhr = new XMLHttpRequest();
+                //
+                //         // listen to the 'progress' event
+                //         xhr.upload.addEventListener('progress', function(evt) {
+                //
+                //             if (evt.lengthComputable) {
+                //                 // calculate the percentage of upload completed
+                //                 var percentComplete = evt.loaded / evt.total;
+                //                 percentComplete = parseInt(percentComplete * 100);
+                //
+                //                 // update the Bootstrap progress bar with the new percentage
+                //                 $('.progress-bar').text(percentComplete + '%');
+                //                 $('.progress-bar').width(percentComplete + '%');
+                //
+                //                 // once the upload reaches 100%, set the progress bar text to done
+                //                 if (percentComplete === 100) {
+                //                     $('.progress-bar').html('Done');
+                //                 }
+                //
+                //             }
+                //
+                //         }, false);
+                //
+                //         return xhr;
+                //     }
+                // });
 
             }
         });
