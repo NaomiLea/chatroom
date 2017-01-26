@@ -21,10 +21,13 @@
 <body>
     <div id="privateChatMessages">
         <div class="privateChatRoom">
+            <div class="backgroundPrivate">
+                <p class="privateTitle">Chatting with:</p>
+                <p class="privateTitle" id="privateWho"></p>
+            </div>
             <form class="private">
-
                 <input type="text" id="privateText" />
-                <input type="submit" id="privateSubmit"/>
+                <button type="submit" id="privateSubmit" />Submit</button>
             </form>
         </div>
     </div>
@@ -130,6 +133,7 @@
 
         socket.on("private chat", function(msg) {
             $(".privateChatRoom").css("display", "block");
+            $("#privateWho").append($("<p>").text(msg));
 
         });
         // socket.on('upload file', function(msg) {

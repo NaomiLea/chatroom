@@ -38,6 +38,13 @@ body {
   right: 20px;
   z-index: 1;
   background-color: #ffffff;
+
+
+
+}
+
+.privateChatRoom form {
+  background-color: #ffffff;
 }
 
 #privateText {
@@ -51,6 +58,16 @@ body {
   bottom: 10px;
   right: 0px;
 
+}
+
+.backgroundPrivate {
+  background-color: #375081;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.privateTitle {
+  display: inline-block;
 }
 
 form {
