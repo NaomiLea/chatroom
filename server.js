@@ -1,13 +1,17 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var sio = require("socket.io");
 var express = require("express");
 var port = 3000;
 var onlineUsers = [];
 var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
+
 var numberOnline = 0;
+
+
 app.use(express.static(__dirname + '/'));
 
 app.get('/index', function(req, res) {
@@ -27,7 +31,6 @@ io.on('connection', function(socket) {
         onlineUsers.push(people);
         io.emit("user list", onlineUsers);
         numberOnline++;
-        console.log(numberOnline);
         io.emit('people online', "People online: " + numberOnline);
     });
 
@@ -58,9 +61,15 @@ io.on('connection', function(socket) {
     });
 
     socket.on("private chat", function(msg) {
+
         var nickname = socket.nickname;
-        io.emit("private chat", nickname + ": " + msg);
-        console.log("hello");
+        for (var i = 0; i < onlineUsers.length; i++) {
+            if (onlineUsers[i].name == msg) {
+                io.emit("private chat", msg);
+                console.log("hello");
+            }
+
+        }
 
     });
 

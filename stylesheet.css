@@ -27,6 +27,31 @@ body {
     width: 30vw;
 }
 
+.privateChatRoom {
+  display: block;
+  height: 70vh;
+  width: 40vw;
+  border: solid;
+  border-color: #000000;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+#privateText {
+  position: absolute;
+  bottom: 10px;
+}
+
+#privateSubmit {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+
+}
+
 form {
     background-color: rgb(49, 95, 156);
     height: 8vh;

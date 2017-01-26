@@ -19,6 +19,15 @@
 </head>
 
 <body>
+    <div id="privateChatMessages">
+        <div class="privateChatRoom">
+            <form class="private">
+
+                <input type="text" id="privateText" />
+                <input type="submit" id="privateSubmit"/>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div id="online" class="col-sm-3">
             <div id="username">
@@ -34,9 +43,7 @@
                     <input type="text" id="available">
                     <button type="submit" id="searchUser">Chat</button>
                 </div>
-                <div id="privateChatMessages">
-                    <ul id="privateMessage"></ul>
-                </div>
+
             </div>
             <div>
                 <form class="col-sm-12" action="index" id="form">
@@ -122,7 +129,7 @@
         });
 
         socket.on("private chat", function(msg) {
-            $('#privateMessage').append($('<li>').text(msg));
+            $(".privateChatRoom").css("display", "block");
 
         });
         // socket.on('upload file', function(msg) {
