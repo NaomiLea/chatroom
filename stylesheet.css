@@ -66,6 +66,10 @@ body {
   font-weight: bold;
 }
 
+.backgroundPrivate span {
+  float: right;
+}
+
 .privateTitle {
   display: inline-block;
 }
