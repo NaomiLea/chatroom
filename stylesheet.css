@@ -147,7 +147,16 @@ ul {
     height: 92vh;
 }
 
+#privateChatlog {
+  height: 51vh;
+  width: 39.5vw;
+  overflow-y: scroll;
+  word-wrap: break-word;
+
+}
+
 .row {
+
     display: flex;
     flex-direction: row;
 }

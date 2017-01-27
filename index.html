@@ -34,7 +34,7 @@
             </div>
             <form class="private">
                 <input type="text" id="privateText" />
-                <button type="submit" id="privateSubmit" />Submit</button>
+                <input type="submit" id="privateSubmit" />
             </form>
         </div>
     </div>
@@ -51,7 +51,7 @@
                 <ul id="messages"></ul>
                 <div class=chooseUser>
                     <input type="text" id="available">
-                    <button type="submit" id="searchUser">Chat</button>
+                    <input type="submit" id="searchUser">
                 </div>
 
             </div>
@@ -115,19 +115,24 @@
 
         });
 
+
         $('#searchUser').click(function(e) {
             socket.emit('private chat', $('#available').val());
             var searching = $('#available').val('');
+
+
+            return false;
+
+        });
+        $("#privateSubmit").click(function(e) {
+            socket.emit("private message", $("#privateText").val());
+            $("#privateText").val('');
+
             return false;
 
         });
 
-        $("#privateSubmit").click(function(e) {
-            socket.emit("private message", $("#privateText").val());
-            var private = $("#privateText").val();
-            console.log(private);
 
-        });
 
         socket.on('people online', function(msg) {
             $('#username').append($('<li class="userName">').text(msg));
@@ -154,6 +159,7 @@
 
         socket.on("private message", function(msg) {
             $('#privateMessages').append($('<li>').text(msg));
+
 
         });
         // socket.on('upload file', function(msg) {
