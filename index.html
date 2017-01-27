@@ -28,10 +28,13 @@
                 <span class="glyphicon glyphicon-minus privateTitle"></span>
 
             </div>
+            <div id="privateChatlog">
+
+                <ul id="privateMessages"></ul>
+            </div>
             <form class="private">
                 <input type="text" id="privateText" />
                 <button type="submit" id="privateSubmit" />Submit</button>
-
             </form>
         </div>
     </div>
@@ -119,6 +122,13 @@
 
         });
 
+        $("#privateSubmit").click(function(e) {
+            socket.emit("private message", $("#privateText").val());
+            var private = $("#privateText").val();
+            console.log(private);
+
+        });
+
         socket.on('people online', function(msg) {
             $('#username').append($('<li class="userName">').text(msg));
 
@@ -138,6 +148,12 @@
         socket.on("private chat", function(msg) {
             $(".privateChatRoom").css("display", "block");
             $("#privateWho").append($("<p>").text(msg));
+            $(".chooseUser").css("display", "none");
+
+        });
+
+        socket.on("private message", function(msg) {
+            $('#privateMessages').append($('<li>').text(msg));
 
         });
         // socket.on('upload file', function(msg) {

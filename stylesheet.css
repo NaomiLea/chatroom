@@ -70,17 +70,13 @@ body {
   float: right;
 }
 
-.privateTitle {
+.privateTitle, .submission, #typing, .controls  {
   display: inline-block;
 }
 
 form {
     background-color: rgb(49, 95, 156);
     height: 8vh;
-}
-
-.submission {
-    display: inline-block;
 }
 
 #input-default {
@@ -154,14 +150,6 @@ ul {
 .row {
     display: flex;
     flex-direction: row;
-}
-
-#typing {
-    display: inline-block;
-}
-
-.controls {
-    display: inline-block;
 }
 
 .emojiPicker {

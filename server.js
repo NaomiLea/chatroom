@@ -73,6 +73,12 @@ io.on('connection', function(socket) {
 
     });
 
+    socket.on("private message", function(msg) {
+        var nickname = socket.nickname;
+        io.emit("private message", nickname + ": " + msg);
+
+    });
+
 });
 
 
