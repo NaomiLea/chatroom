@@ -33,7 +33,7 @@
                 <ul id="privateMessages"></ul>
             </div>
             <form class="private">
-                <input type="text" id="privateText" />
+                <input type="text" id="privateText" autocomplete="off"/>
                 <input type="submit" id="privateSubmit" />
             </form>
         </div>
@@ -50,8 +50,8 @@
             <div id="chatlog" class="col-sm-9">
                 <ul id="messages"></ul>
                 <div class=chooseUser>
-                    <input type="text" id="available">
-                    <input type="submit" id="searchUser">
+                    <input type="text" id="available" autocomplete="off"/>
+                    <input type="submit" id="searchUser"/>
                 </div>
 
             </div>
@@ -59,7 +59,7 @@
                 <form class="col-sm-12" action="index" id="form">
                     <div class="controls">
                         <div class="field" id="typing">
-                            <input type="text" id="input-default" class="emojiable-option">
+                            <input autocomplete="off" type="text" id="input-default" class="emojiable-option">
                         </div>
                         <div id="typing">
                             <input type="submit" id="submit" />
