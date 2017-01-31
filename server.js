@@ -74,12 +74,15 @@ io.on('connection', function(socket) {
 
     socket.on("private message", function(msg) {
         var nickname = socket.nickname;
+        var myself = socket.id;
+        console.log(myself);
         for(var i =0; i< onlineUsers.length; i++){
           var specific = onlineUsers[i].socketid;
         }
         io.to(specific).emit("private message", nickname + ": " + msg);
+        io.to(myself).emit("private message", nickname + ": " + msg);
 
-        console.log(specific);
+
 
     });
 
